@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "validation.h": "c",
+        "prime.h": "c",
+        "operations.h": "c",
+        "math.h": "c",
+        "validations.h": "c",
+        "function.h": "c"
+    }
+}
