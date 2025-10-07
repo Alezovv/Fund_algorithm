@@ -5,6 +5,7 @@
         "operations.h": "c",
         "math.h": "c",
         "validations.h": "c",
-        "function.h": "c"
+        "function.h": "c",
+        "string.h": "c"
     }
 }
