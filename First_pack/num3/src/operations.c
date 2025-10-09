@@ -24,7 +24,6 @@ OperationStatus solve_quadratic_permutations(double epsilon, double a, double b,
 
     for (int i = 0; i < 6; i++)
     {
-        // Проверяем уникальность перестановки
         bool is_unique = true;
         for (int j = 0; j < i; j++)
         {
@@ -50,7 +49,6 @@ OperationStatus solve_quadratic_permutations(double epsilon, double a, double b,
         if (!is_unique)
             continue;
 
-        // Решаем уравнение
         double A = coefficients[permutations[i][0]];
         double B = coefficients[permutations[i][1]];
         double C = coefficients[permutations[i][2]];
@@ -144,7 +142,6 @@ OperationStatus check_right_triangle(double epsilon, double a, double b, double 
         return ERROR_INVALID_NUMBER;
     }
 
-    // Сортируем стороны
     double sides[3] = {a, b, c};
     for (int i = 0; i < 2; i++)
     {

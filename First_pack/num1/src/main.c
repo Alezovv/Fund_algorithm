@@ -68,7 +68,6 @@ void handle_operation_error(OperationStatus status)
 
 int main(int argc, char *argv[])
 {
-    // Валидация аргументов
     ValidationStatus validation_result = validate_arguments(argc, argv);
     if (validation_result != VALIDATION_SUCCESS)
     {
@@ -80,10 +79,8 @@ int main(int argc, char *argv[])
     const char *flag = argv[1];
     long long number;
 
-    // Парсинг числа (уже провалидировано)
     validate_number(argv[2], &number);
 
-    // Обработка флагов
     if (strcmp(flag, "-h") == 0 || strcmp(flag, "/h") == 0)
     {
         int *multiples = NULL;

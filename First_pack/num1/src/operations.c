@@ -9,7 +9,6 @@ OperationStatus find_multiples(long long x, int **results, size_t *count)
 
     *count = 0;
 
-    // Подсчет количества кратных чисел
     for (int i = x; i <= 100; i += x)
     {
         if (i % x == 0)
@@ -23,14 +22,12 @@ OperationStatus find_multiples(long long x, int **results, size_t *count)
         return OPERATION_NO_RESULTS;
     }
 
-    // Выделение памяти
     *results = (int *)malloc(*count * sizeof(int));
     if (*results == NULL)
     {
         return OPERATION_OVERFLOW;
     }
 
-    // Заполнение массива
     size_t index = 0;
     for (int i = x; i <= 100; i += x)
     {
@@ -115,16 +112,14 @@ OperationStatus split_hex_digits(long long x, char **result, size_t *length)
         temp /= 16;
     }
 
-    // Выделяем память: цифры + пробелы + нулевой терминатор
-    *result = (char *)malloc(digit_count * 2); // цифра + пробел
+    *result = (char *)malloc(digit_count * 2);
     if (*result == NULL)
     {
         return OPERATION_OVERFLOW;
     }
 
-    // Заполняем строку с конца
     temp = x;
-    size_t pos = digit_count * 2 - 2; // начинаем с предпоследней позиции
+    size_t pos = digit_count * 2 - 2;
 
     while (temp > 0)
     {
@@ -214,7 +209,6 @@ OperationStatus calculate_sum(long long x, unsigned long long *result)
         return OPERATION_INVALID_INPUT;
     }
 
-    // Проверка на переполнение: сумма 1+2+...+n = n(n+1)/2
     if (x > 0 && (unsigned long long)x > (ULLONG_MAX * 2) / (x + 1))
     {
         return OPERATION_OVERFLOW;

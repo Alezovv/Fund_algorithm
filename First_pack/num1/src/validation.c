@@ -30,7 +30,6 @@ ValidationStatus validate_number(const char *str, long long *result)
         return VALIDATION_EMPTY_STRING;
     }
 
-    // Проверка на отрицательные числа
     if (str[0] == '-')
     {
         return VALIDATION_NUMBER_TOO_SMALL;
@@ -45,7 +44,6 @@ ValidationStatus validate_number(const char *str, long long *result)
             return VALIDATION_INVALID_SYMBOL;
         }
 
-        // Проверка переполнения
         if (value > (LLONG_MAX - (str[i] - '0')) / 10)
         {
             return VALIDATION_NUMBER_TOO_LARGE;
