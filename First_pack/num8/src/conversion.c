@@ -34,7 +34,6 @@ ConversionStatus str_to_ll(const char *str, int base, long long *result)
     int sign = 1;
     const char *ptr = str;
 
-    // Обработка знака
     if (*ptr == '-')
     {
         sign = -1;
@@ -57,7 +56,6 @@ ConversionStatus str_to_ll(const char *str, int base, long long *result)
             return CONVERSION_INVALID_INPUT;
         }
 
-        // Проверка переполнения для положительных чисел
         if (sign == 1)
         {
             if (res > max_positive / base ||
@@ -66,7 +64,6 @@ ConversionStatus str_to_ll(const char *str, int base, long long *result)
                 return CONVERSION_OVERFLOW;
             }
         }
-        // Проверка переполнения для отрицательных чисел
         else
         {
             if (res > max_negative / base ||
@@ -82,7 +79,6 @@ ConversionStatus str_to_ll(const char *str, int base, long long *result)
 
     if (sign == -1)
     {
-        // Для LLONG_MIN нужно специальное преобразование
         if (res == max_negative)
         {
             *result = LLONG_MIN;
@@ -112,7 +108,6 @@ ConversionStatus ll_to_str(long long num, int base, char *buffer, size_t buffer_
         return CONVERSION_INVALID_BASE;
     }
 
-    // Минимальный размер буфера: 1 цифра + знак + нуль-терминатор = 3 байта
     if (buffer_size < 3)
     {
         return CONVERSION_BUFFER_TOO_SMALL;
@@ -127,7 +122,6 @@ ConversionStatus ll_to_str(long long num, int base, char *buffer, size_t buffer_
     if (num < 0)
     {
         is_negative = 1;
-        // Обработка минимального отрицательного числа
         if (num == LLONG_MIN)
         {
             n = (unsigned long long)LLONG_MAX + 1;
@@ -142,7 +136,6 @@ ConversionStatus ll_to_str(long long num, int base, char *buffer, size_t buffer_
         n = (unsigned long long)num;
     }
 
-    // Преобразование в строку
     do
     {
         if (ptr <= buffer)
@@ -155,7 +148,6 @@ ConversionStatus ll_to_str(long long num, int base, char *buffer, size_t buffer_
         *--ptr = (digit < 10) ? ('0' + digit) : ('A' + digit - 10);
     } while (n > 0);
 
-    // Добавление знака
     if (is_negative)
     {
         if (ptr <= buffer)

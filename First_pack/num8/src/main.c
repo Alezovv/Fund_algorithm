@@ -13,27 +13,23 @@ static void remove_leading_zeros(char *str)
     char *dst = str;
     int is_negative = 0;
 
-    // Сохраняем знак
     if (*src == '-')
     {
         is_negative = 1;
         *dst++ = *src++;
     }
 
-    // Пропускаем ведущие нули
     while (*src == '0' && *(src + 1) != '\0')
     {
         src++;
     }
 
-    // Копируем остаток
     while (*src)
     {
         *dst++ = *src++;
     }
     *dst = '\0';
 
-    // Обработка случая, когда остался только минус
     if (is_negative && dst == str + 1 && *str == '-')
     {
         str[0] = '0';
@@ -127,7 +123,6 @@ int main(void)
 
     if (has_numbers)
     {
-        // Убираем ведущие нули из исходного представления
         remove_leading_zeros(max_str);
 
         printf("\nMax absolute value: %s\n", max_str);

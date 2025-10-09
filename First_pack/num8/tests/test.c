@@ -83,7 +83,7 @@ void test_ll_to_str()
     status = ll_to_str(100, 9, buffer, sizeof(buffer), &result_str);
     assert(status == CONVERSION_SUCCESS && strcmp(result_str, "121") == 0);
 
-    // Тест минимального буфера (должен быть достаточно большим для числа)
+    // Тест минимального буфера
     status = ll_to_str(123, 10, buffer, 5, &result_str); // "123" + '\0' = 4 байта
     assert(status == CONVERSION_SUCCESS);
 
@@ -115,15 +115,12 @@ void test_edge_cases()
     char buffer[100];
     char *result_str;
 
-    // Тест максимального значения
     status = str_to_ll("9223372036854775807", 10, &result); // LLONG_MAX
     assert(status == CONVERSION_SUCCESS && result == LLONG_MAX);
 
-    // Тест минимального значения
     status = str_to_ll("-9223372036854775808", 10, &result); // LLONG_MIN
     assert(status == CONVERSION_SUCCESS && result == LLONG_MIN);
 
-    // Тест преобразования максимального значения в разные системы
     status = ll_to_str(LLONG_MAX, 10, buffer, sizeof(buffer), &result_str);
     assert(status == CONVERSION_SUCCESS);
     assert(strcmp(result_str, "9223372036854775807") == 0);
@@ -131,12 +128,10 @@ void test_edge_cases()
     status = ll_to_str(LLONG_MAX, 16, buffer, sizeof(buffer), &result_str);
     assert(status == CONVERSION_SUCCESS);
 
-    // Тест преобразования минимального значения
     status = ll_to_str(LLONG_MIN, 10, buffer, sizeof(buffer), &result_str);
     assert(status == CONVERSION_SUCCESS);
     assert(strcmp(result_str, "-9223372036854775808") == 0);
 
-    // Тест нуля
     status = str_to_ll("0", 10, &result);
     assert(status == CONVERSION_SUCCESS && result == 0);
 
@@ -146,7 +141,6 @@ void test_edge_cases()
     status = ll_to_str(0, 16, buffer, sizeof(buffer), &result_str);
     assert(status == CONVERSION_SUCCESS && strcmp(result_str, "0") == 0);
 
-    // Тест чисел близких к границам
     status = str_to_ll("9223372036854775806", 10, &result); // LLONG_MAX - 1
     assert(status == CONVERSION_SUCCESS && result == LLONG_MAX - 1);
 
@@ -158,7 +152,6 @@ void test_edge_cases()
 
 void test_remove_leading_zeros()
 {
-    // Эта функция теперь в main.c, но мы можем протестировать логику через преобразования
     char buffer[100];
     char *result_str;
     ConversionStatus status;
