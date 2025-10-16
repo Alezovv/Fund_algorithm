@@ -20,7 +20,7 @@ static long gcd_long(long a, long b)
     return a;
 }
 
-static int approx_rational_continued_fraction(double x, double eps, long maxq, long *out_p, long *out_q)
+static int approx_rational_continued_fraction(double x, double eps, long maxq, long *out_p, long *out_q) // в дробь
 {
     if (!(x > 0.0 && x < 1.0) || !(eps > 0.0) || maxq <= 0 || out_p == NULL || out_q == NULL)
     {
@@ -99,7 +99,7 @@ static int approx_rational_continued_fraction(double x, double eps, long maxq, l
     return 0;
 }
 
-static int denom_has_only_base_primes(long q, int base)
+static int denom_has_only_base_primes(long q, int base) // конечно или нет
 {
     if (q <= 0)
         return 0;
