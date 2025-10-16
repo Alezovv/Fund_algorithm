@@ -34,20 +34,17 @@ static int approx_rational_continued_fraction(double x, double eps, long maxq, l
     long p1 = 1, q1 = 0;
 
     for (int iter = 0; iter < 200; ++iter)
-    { /* ограничение по итерациям */
+    {
         a = (long)floor(z);
         if (a > LONG_MAX / (p1 > 0 ? p1 : 1))
-        {
-            break; /* защита от переполнения */
-        }
+            break;
         long p2 = a * p1 + p0;
         long q2 = a * q1 + q0;
         if (q2 <= 0)
-            break; /* защита */
+            break;
 
         if (q2 > maxq)
         {
-            /* Попробуем "последнюю" корректную комбинацию с ограниченным знаменателем */
             if (q1 == 0)
                 break;
             long k = (maxq - q0) / q1;
@@ -73,13 +70,11 @@ static int approx_rational_continued_fraction(double x, double eps, long maxq, l
             return 1;
         }
 
-        /* если дробь точная (z - a == 0) — завершение */
         if (fabs(z - (double)a) < 1e-18)
         {
             break;
         }
 
-        /* переход к следующему звену непрерывной дроби */
         p0 = p1;
         q0 = q1;
         p1 = p2;
@@ -87,7 +82,6 @@ static int approx_rational_continued_fraction(double x, double eps, long maxq, l
         z = 1.0 / (z - (double)a);
     }
 
-    /* как запасной вариант — пробуем перебором ограниченные знаменатели */
     for (long q = 1; q <= maxq; ++q)
     {
         long p = (long)llround(x * (double)q);
@@ -104,7 +98,7 @@ static int approx_rational_continued_fraction(double x, double eps, long maxq, l
 
     return 0;
 }
-/* Проверка, все ли простые множители знаменателя q содержатся среди простых множителей основания base */
+
 static int denom_has_only_base_primes(long q, int base)
 {
     if (q <= 0)
@@ -112,7 +106,6 @@ static int denom_has_only_base_primes(long q, int base)
     if (base <= 1)
         return 0;
 
-    /* факторизация основания (получаем уникальные простые множители) */
     int base_primes[64];
     int bp_count = 0;
     int b = base;
@@ -131,7 +124,6 @@ static int denom_has_only_base_primes(long q, int base)
         base_primes[bp_count++] = b;
     }
 
-    /* избавимся от всех факторов, принадлежащих основанию */
     long tmp = q;
     for (int i = 0; i < bp_count && tmp > 1; ++i)
     {
