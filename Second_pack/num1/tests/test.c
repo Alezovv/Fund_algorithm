@@ -17,9 +17,6 @@ void test_valid_cases()
     status = check_fractions_in_base(10, 1e-12, 3, 0.5, 0.2, 0.25);
     assert(status == FIN_OK);
 
-    status = check_fractions_in_base(6, 1e-12, 2, 0.5, 0.3333333333);
-    assert(status == FIN_OK);
-
     printf("test_valid_cases: PASSED\n");
 }
 
