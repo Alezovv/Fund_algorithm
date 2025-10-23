@@ -1,0 +1,30 @@
+0070
+Nikolay
+Knyazkoff
+M8O-203BV-24
+5 3 2 4 4
+1
+John
+Doe
+CS101
+5 4 3 5 4
+2
+Jane
+Smith
+CS101
+4 5 5 4 3
+3
+Alice
+Johnson
+CS102
+3 3 4 5 4
+4
+Bob
+Brown
+CS101
+5 5 5 5 5
+5
+Eve
+Davis
+CS102
+2 3 4 3 4

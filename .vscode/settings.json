@@ -7,6 +7,9 @@
         "validations.h": "c",
         "function.h": "c",
         "string.h": "c",
-        "conversion.h": "c"
+        "conversion.h": "c",
+        "utils.h": "c",
+        "student.h": "c",
+        "stdlib.h": "c"
     }
 }

@@ -49,10 +49,10 @@ int main()
     oversprintf(buf, "Base36: %TO\n", "9IX", 36);
     printf("%s", buf);
 
-    oversprintf(buf, "mi: %mi\n", 12);
+    oversprintf(buf, "mi: %mi\n", -1);
     printf("%s", buf);
 
-    oversprintf(buf, "mu: %mu\n", 12);
+    oversprintf(buf, "mu: %mu\n", 1);
     printf("%s", buf);
 
     oversprintf(buf, "md: %md\n", 12.53);
