@@ -220,7 +220,7 @@ StatusCode Print_Above_Average(const Class *class, const char *trace_path)
         total += average_mark(&class->someone[i]);
     double group_avg = total / class->count;
 
-    fprintf(fout, "\n--- Students with above-average marks ---\n");
+    fprintf(fout, "\nStudents with above-average marks\n");
     int found = 0;
 
     for (int i = 0; i < class->count; i++)

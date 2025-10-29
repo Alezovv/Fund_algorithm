@@ -8,8 +8,8 @@
 
 #define LINE_WIDTH 80
 
-static void justify_line(const char *line, char *out);
+void justify_line(const char *line, char *out);
 
-static void process_line(FILE *fout, char *buffer);
+void process_line(FILE *fout, char *buffer);
 
 #endif // FUNCTION_H

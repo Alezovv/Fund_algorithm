@@ -11,8 +11,6 @@ void print_options()
     printf("\nSelect option: \n");
     printf("0 - Search by:\n");
     printf("1 - Sort by:\n");
-    printf("2 - \n");
-    printf("3 - \n");
 }
 
 void print_attribute()

@@ -6,14 +6,13 @@
 
 int main(void)
 {
-    printf("=== Running function tests ===\n");
+    printf("Running function tests\n");
 
     FILE *f = fopen("tests/test_input.txt", "w+");
     assert(f != NULL);
 
     fprintf(f, "X IV 1011 11\n");
     fprintf(f, "1a 2B 1c\n");
-    rewind(f);
 
     int rom1 = 0, rom2 = 0;
     unsigned int z1 = 0, z2 = 0;
@@ -41,7 +40,7 @@ int main(void)
 
     assert(n == 4);
     assert(r == 14);  // xiv = 14
-    assert(z == 4);   // 1011 по твоей функции -> 4
+    assert(z == 4);   // 1011 -> 4
     assert(cv == 26); // 1a -> 26 в base16
     assert(CV == 43); // 2B -> 43 в base16
 

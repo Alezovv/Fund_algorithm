@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    Print(class);
+    // Print(class);
 
     int option = 0;
     print_options();

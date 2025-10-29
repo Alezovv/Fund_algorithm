@@ -10,6 +10,15 @@
         "conversion.h": "c",
         "utils.h": "c",
         "student.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "tobase.h": "c",
+        "cstdlib": "cpp",
+        "vector.h": "c",
+        "stdio.h": "c",
+        "type_traits": "cpp",
+        "check_brackets.h": "c",
+        "statuscode.h": "c",
+        "stack.h": "c",
+        "stdbool.h": "c"
     }
 }

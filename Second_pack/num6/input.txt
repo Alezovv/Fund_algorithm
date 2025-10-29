@@ -1,30 +1,30 @@
 0070
 Nikolay
-Knyazkoff
-M8O-203BV-24
+Per
+203
 5 3 2 4 4
 1
 John
-Doe
-CS101
+Snow
+111
 5 4 3 5 4
 2
-Jane
-Smith
-CS101
+Jessi
+Pinckman
+301
 4 5 5 4 3
 3
 Alice
 Johnson
-CS102
+102
 3 3 4 5 4
 4
 Bob
-Brown
-CS101
+Builder
+204
 5 5 5 5 5
 5
 Eve
-Davis
-CS102
+Grow
+401
 2 3 4 3 4

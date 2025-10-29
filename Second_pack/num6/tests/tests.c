@@ -24,7 +24,7 @@ Student create_test_student(unsigned int id, const char *name, const char *surna
 
 int main(void)
 {
-    printf("=== Running tests ===\n");
+    printf("Running tests\n");
 
     Class cls;
     StatusCode status = Init_Class(&cls, 2);
