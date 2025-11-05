@@ -1,11 +1,70 @@
 #ifndef LOGGING_H
 #define LOGGING_H
 
-typedef enum
-{
+#include "StatusCode.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-} Description;
+#define LET_COUNT 26
 
-void Log(const char *str, int *mas, Description desc);
+StatusCode Init_Logger(const char *filename);
+void Close_Logger();
+const char *Status_Handle(StatusCode status);
+
+#define LOG_ARRAY(arr)                                               \
+    do                                                               \
+    {                                                                \
+        if (log_file != NULL)                                        \
+        {                                                            \
+            int empty = 1;                                           \
+            fprintf(log_file, "\nDATA: \n");                         \
+            for (int i = 0; i < LET_COUNT; i++)                      \
+            {                                                        \
+                if (arr[i] != NULL)                                  \
+                {                                                    \
+                    fprintf(log_file, "%c = %s\n", 'A' + i, arr[i]); \
+                    empty = 0;                                       \
+                }                                                    \
+            }                                                        \
+            if (empty)                                               \
+                fprintf(log_file, "No data\n");                      \
+                                                                     \
+            fprintf(log_file, "\n");                                 \
+            fflush(log_file);                                        \
+        }                                                            \
+    } while (0)
+
+#define LOG_STRING(str)                             \
+    do                                              \
+    {                                               \
+        if (log_file != NULL)                       \
+        {                                           \
+            fprintf(log_file, "STRING: %s\n", str); \
+            fflush(log_file);                       \
+        }                                           \
+    } while (0)
+
+#define LOG_ERROR(msg)                             \
+    do                                             \
+    {                                              \
+        if (log_file != NULL)                      \
+        {                                          \
+            fprintf(log_file, "ERROR: %s\n", msg); \
+            fflush(log_file);                      \
+        }                                          \
+    } while (0)
+
+#define LOG_DESCRIPTION(value)                               \
+    do                                                       \
+    {                                                        \
+        if (log_file != NULL)                                \
+        {                                                    \
+            fprintf(log_file, "DESCRIPTION: %s\n\n", value); \
+            fflush(log_file);                                \
+        }                                                    \
+    } while (0)
+
+extern FILE *log_file;
 
 #endif // LOGGING_H

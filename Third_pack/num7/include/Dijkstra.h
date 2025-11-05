@@ -5,6 +5,8 @@
 #include "./StatusCode.h"
 #include <ctype.h>
 
-StatusCode Dijkstra(const char *str, int *result);
+#define OPERATOR {'+', '-', '*', '/', '^'}
+
+StatusCode Dijkstra(const char *str, Stack *s_rpn);
 
 #endif // DIJKSTRA_H

@@ -19,6 +19,8 @@
         "check_brackets.h": "c",
         "statuscode.h": "c",
         "stack.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "dijkstra.h": "c",
+        "format": "c"
     }
 }
