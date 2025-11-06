@@ -22,6 +22,22 @@
         "stdbool.h": "c",
         "dijkstra.h": "c",
         "format": "c",
-        "algorithm": "c"
+        "algorithm": "c",
+        "log.h": "c",
+        "linkedlist.h": "c",
+        "array": "c",
+        "string_view": "c",
+        "initializer_list": "c",
+        "span": "c",
+        "charconv": "c",
+        "chrono": "c",
+        "optional": "c",
+        "ratio": "c",
+        "system_error": "c",
+        "functional": "c",
+        "tuple": "c",
+        "utility": "c",
+        "variant": "c",
+        "string": "c"
     }
 }

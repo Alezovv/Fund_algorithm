@@ -1,8 +1,5 @@
 #include "../include/LinkedList.h"
 #include "../include/Liver.h"
 
-main()
-{
-    
-    const char *input_path = "file.txt";
-}
+DEFINE_LINKEDLIST(Liver, list)
+IMPLEMENT_LINKEDLIST(Liver, list)
