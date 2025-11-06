@@ -11,6 +11,7 @@
 StatusCode Init_Logger(const char *filename);
 void Close_Logger();
 const char *Status_Handle(StatusCode status);
+void print_usage();
 
 #define LOG_ARRAY(arr)                                               \
     do                                                               \
@@ -18,7 +19,7 @@ const char *Status_Handle(StatusCode status);
         if (log_file != NULL)                                        \
         {                                                            \
             int empty = 1;                                           \
-            fprintf(log_file, "\nDATA: \n");                         \
+            fprintf(log_file, "DATA: \n");                           \
             for (int i = 0; i < LET_COUNT; i++)                      \
             {                                                        \
                 if (arr[i] != NULL)                                  \
@@ -64,6 +65,15 @@ const char *Status_Handle(StatusCode status);
             fflush(log_file);                                \
         }                                                    \
     } while (0)
+
+#define LOG_COUNT(count)                                          \
+    do                                                            \
+    {                                                             \
+        fprintf(log_file, "=======================");             \
+        fprintf(log_file, "Current program counter: %d ", count); \
+        fprintf(log_file, "=======================\n");           \
+        fflush(log_file);                                         \
+    } while (0);
 
 extern FILE *log_file;
 

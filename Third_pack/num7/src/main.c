@@ -11,10 +11,12 @@
 
 int main()
 {
+    print_usage();
     char str[256];
     Stack s;
     int is_print = 0;
     char descr[100];
+    int count = 1;
 
     if (Init_Stack(&s) != SUCCESS)
     {
@@ -35,12 +37,15 @@ int main()
 
     while (1)
     {
+        LOG_COUNT(count++);
         printf("> ");
         if (fgets(str, sizeof(str), stdin) == NULL)
         {
             LOG_ERROR("Ошибка при вводе!");
             break;
         }
+
+        LOG_STRING(str);
 
         str[strcspn(str, "\n")] = '\0';
 
@@ -54,10 +59,9 @@ int main()
         if (status != SUCCESS)
         {
             LOG_ERROR(Status_Handle(status));
+            LOG_ARRAY(mem);
             continue;
         }
-
-        LOG_STRING(str);
 
         // print
         if (is_print)
@@ -65,12 +69,14 @@ int main()
             char var = '\0';
             if (sscanf(str, " print ( %c ) ", &var) != 1)
             {
+                LOG_ARRAY(mem);
                 LOG_ERROR("Неверный синтаксис print (пример: print(A))");
                 continue;
             }
 
             if (!(var >= 'A' && var <= 'Z'))
             {
+                LOG_ARRAY(mem);
                 LOG_ERROR("Некорректное имя переменной для print");
                 continue;
             }
@@ -83,6 +89,7 @@ int main()
             else
             {
                 printf("%c не определена\n", var);
+                LOG_ERROR("Переменная не определена");
                 snprintf(descr, sizeof(descr), "Print %c (undefined)", var);
             }
         }
@@ -92,6 +99,7 @@ int main()
             char *equals_pos = strchr(str, '=');
             if (equals_pos == NULL)
             {
+                LOG_ARRAY(mem);
                 LOG_ERROR("В выражении отсутствует '='");
                 continue;
             }
@@ -108,6 +116,7 @@ int main()
 
             if (!(target_var >= 'A' && target_var <= 'Z'))
             {
+                LOG_ARRAY(mem);
                 LOG_ERROR("Некорректное имя переменной слева от '='");
                 continue;
             }
@@ -119,6 +128,7 @@ int main()
             Stack_Destroy(&s);
             if (Init_Stack(&s) != SUCCESS)
             {
+                LOG_ARRAY(mem);
                 LOG_ERROR("Ошибка переинициализации стека");
                 continue;
             }
@@ -128,6 +138,7 @@ int main()
             status = Dijkstra(substituted, &s);
             if (status != SUCCESS)
             {
+                LOG_ARRAY(mem);
                 LOG_ERROR(Status_Handle(status));
                 continue;
             }
@@ -136,6 +147,7 @@ int main()
             status = Rpn_Calculate(&s, &result);
             if (status != SUCCESS)
             {
+                LOG_ARRAY(mem);
                 LOG_ERROR(Status_Handle(status));
                 continue;
             }
@@ -148,6 +160,7 @@ int main()
             mem[target_var - 'A'] = malloc(strlen(result_str) + 1);
             if (mem[target_var - 'A'] == NULL)
             {
+                LOG_ARRAY(mem);
                 LOG_ERROR("Ошибка выделения памяти");
                 continue;
             }

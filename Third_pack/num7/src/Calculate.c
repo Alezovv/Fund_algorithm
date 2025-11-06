@@ -36,7 +36,7 @@ int power(int a, int b)
     return result;
 }
 
-void Calc(char oper, char *first, char *second, char result[])
+StatusCode Calc(char oper, char *first, char *second, char result[])
 {
     int int_result = 0;
     switch (oper)
@@ -58,6 +58,8 @@ void Calc(char oper, char *first, char *second, char result[])
     }
     case '/':
     {
+        if (atoi(second) == 0)
+            return DIVISION_BY_ZERO;
         int_result = atoi(first) / atoi(second);
         break;
     }
@@ -68,6 +70,7 @@ void Calc(char oper, char *first, char *second, char result[])
     }
     }
     sprintf(result, "%d", int_result);
+    return SUCCESS;
 }
 
 StatusCode Rpn_Calculate(Stack *s, int *result)
@@ -97,7 +100,6 @@ StatusCode Rpn_Calculate(Stack *s, int *result)
         CHECK;
     }
 
-    Stack_Print(&tmp);
     char *first = (char *)malloc(100 * sizeof(char));
     char *second = (char *)malloc(100 * sizeof(char));
 
@@ -111,7 +113,9 @@ StatusCode Rpn_Calculate(Stack *s, int *result)
             char temp_calc[123] = {0};
             Stack_Pop(s, &second);
             Stack_Pop(s, &first);
-            Calc(*str, first, second, temp_calc);
+            status = Calc(*str, first, second, temp_calc);
+            CHECK;
+
             Stack_Push(s, temp_calc);
         }
         else

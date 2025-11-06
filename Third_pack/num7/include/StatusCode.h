@@ -14,7 +14,8 @@ typedef enum
     WRONG_ARGUMENT,
     MEMORY_ALLOCATE,
     STACK_EMPTY,
-    FILE_ERROR
+    FILE_ERROR,
+    DIVISION_BY_ZERO
 } StatusCode;
 
 StatusCode Validate_Expression(char *str, int *expr);

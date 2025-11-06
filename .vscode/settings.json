@@ -21,6 +21,7 @@
         "stack.h": "c",
         "stdbool.h": "c",
         "dijkstra.h": "c",
-        "format": "c"
+        "format": "c",
+        "algorithm": "c"
     }
 }
