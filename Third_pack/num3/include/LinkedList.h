@@ -6,15 +6,14 @@
 #include "log.h"
 
 #define DEFINE_LINKEDLIST(TYPE, NAME)                            \
-                                                                 \
     typedef struct Node_##NAME                                   \
     {                                                            \
         TYPE data;                                               \
-        struct Node_##NAME *prev;                                \
         struct Node_##NAME *next;                                \
+        struct Node_##NAME *prev;                                \
     } Node_##NAME;                                               \
                                                                  \
-    typedef struct                                               \
+    typedef struct NAME                                          \
     {                                                            \
         Node_##NAME *head;                                       \
         Node_##NAME *tail;                                       \
@@ -22,23 +21,37 @@
     } NAME;                                                      \
                                                                  \
     NAME *create_##NAME(void);                                   \
+                                                                 \
     void erase_##NAME(NAME *list);                               \
+                                                                 \
     void delete_##NAME(NAME *list);                              \
+                                                                 \
     void push_back_##NAME(NAME *list, TYPE value);               \
+                                                                 \
     void push_front_##NAME(NAME *list, TYPE value);              \
+                                                                 \
     TYPE pop_back_##NAME(NAME *list);                            \
+                                                                 \
     TYPE pop_front_##NAME(NAME *list);                           \
+                                                                 \
     void insert_at_##NAME(NAME *list, size_t index, TYPE value); \
+                                                                 \
     void delete_at_##NAME(NAME *list, size_t index);             \
+                                                                 \
     TYPE get_at_##NAME(const NAME *list, size_t index);          \
+                                                                 \
     int is_equal_##NAME(const NAME *l1, const NAME *l2);         \
                                                                  \
     void push_stack_##NAME(NAME *stack, TYPE value);             \
+                                                                 \
     TYPE pop_stack_##NAME(NAME *stack);                          \
+                                                                 \
     TYPE peek_stack_##NAME(const NAME *stack);                   \
                                                                  \
     void enqueue_##NAME(NAME *queue, TYPE value);                \
+                                                                 \
     TYPE dequeue_##NAME(NAME *queue);                            \
+                                                                 \
     TYPE peek_queue_##NAME(const NAME *queue);
 
 #define IMPLEMENT_LINKEDLIST(TYPE, NAME)                                    \
@@ -218,7 +231,7 @@
                 tmp = tmp->next;                                            \
             node->next = tmp->next;                                         \
             node->prev = tmp;                                               \
-            tmp_next->prev = node;                                          \
+            tmp->next->prev = node;                                         \
             tmp->next = node;                                               \
         }                                                                   \
         list->size++;                                                       \
@@ -279,8 +292,8 @@
         if (!l1 || !l2)                                                     \
             return 0;                                                       \
                                                                             \
-        Node_int_list *na = l1->head;                                       \
-        Node_int_list *nb = l2->head;                                       \
+        Node_##NAME *na = l1->head;                                         \
+        Node_##NAME *nb = l2->head;                                         \
                                                                             \
         while (na && nb)                                                    \
         {                                                                   \
@@ -300,8 +313,40 @@
         else                                                                \
             return 0;                                                       \
     }                                                                       \
-                                                                            \
     void push_stack_##NAME(NAME *stack, TYPE value)                         \
-    {
+    {                                                                       \
+        push_back_##NAME(stack, value);                                     \
+    }                                                                       \
+                                                                            \
+    TYPE pop_stack_##NAME(NAME *stack)                                      \
+    {                                                                       \
+        return pop_back_##NAME(stack);                                      \
+    }                                                                       \
+                                                                            \
+    TYPE peek_stack_##NAME(const NAME *stack)                               \
+    {                                                                       \
+        if (!stack || stack->size == 0)                                     \
+            return (TYPE){0};                                               \
+        return get_at_##NAME(stack, stack->size - 1);                       \
+    }                                                                       \
+                                                                            \
+    void enqueue_##NAME(NAME *queue, TYPE value)                            \
+    {                                                                       \
+        push_back_##NAME(queue, value);                                     \
+    }                                                                       \
+                                                                            \
+    TYPE dequeue_##NAME(NAME *queue)                                        \
+    {                                                                       \
+        if (!queue || queue->size == 0)                                     \
+            return (TYPE){0};                                               \
+        return pop_front_##NAME(queue);                                     \
+    }                                                                       \
+                                                                            \
+    TYPE peek_queue_##NAME(const NAME *queue)                               \
+    {                                                                       \
+        if (!queue || queue->size == 0)                                     \
+            return (TYPE){0};                                               \
+        return get_at_##NAME(queue, 0);                                     \
     }
+
 #endif // LINKEDLIST_H

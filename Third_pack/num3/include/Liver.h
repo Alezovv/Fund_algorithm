@@ -3,7 +3,7 @@
 
 typedef struct Liver
 {
-    const unsigned int id;
+    unsigned int id;
     char *surname;
     char *name;
     char *patronymic;     // отчество

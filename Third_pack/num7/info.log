@@ -1,0 +1,91 @@
+DESCRIPTION: Начало обработки
+
+=======================Current program counter: 1 =======================
+STRING: A=2
+
+DATA: 
+A = 2
+
+DESCRIPTION: Assign A = 2
+
+=======================Current program counter: 2 =======================
+STRING: B=A
+
+DATA: 
+A = 2
+B = 2
+
+DESCRIPTION: Assign B = 2
+
+=======================Current program counter: 3 =======================
+STRING: C=A*B-2
+
+DATA: 
+A = 2
+B = 2
+C = 2
+
+DESCRIPTION: Assign C = 2
+
+=======================Current program counter: 4 =======================
+STRING: print(B)
+
+DATA: 
+A = 2
+B = 2
+C = 2
+
+DESCRIPTION: Print B
+
+=======================Current program counter: 5 =======================
+STRING: print(C)
+
+DATA: 
+A = 2
+B = 2
+C = 2
+
+DESCRIPTION: Print C
+
+=======================Current program counter: 6 =======================
+STRING: print(Z)
+
+ERROR: Переменная не определена
+DATA: 
+A = 2
+B = 2
+C = 2
+
+DESCRIPTION: Print Z (undefined)
+
+=======================Current program counter: 7 =======================
+STRING: P
+
+DATA: 
+A = 2
+B = 2
+C = 2
+
+ERROR: В выражении отсутствует '='
+=======================Current program counter: 8 =======================
+STRING: 2=F
+
+DATA: 
+A = 2
+B = 2
+C = 2
+
+ERROR: Некорректное имя переменной слева от '='
+=======================Current program counter: 9 =======================
+STRING: A=1/0
+
+DATA: 
+A = 2
+B = 2
+C = 2
+
+ERROR: Ошибка деления на 0
+
+=======================Current program counter: 10 =======================
+STRING: exit
+
