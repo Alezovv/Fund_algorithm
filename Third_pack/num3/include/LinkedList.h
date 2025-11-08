@@ -4,54 +4,55 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "log.h"
+#include "Liver.h"
 
-#define DEFINE_LINKEDLIST(TYPE, NAME)                            \
-    typedef struct Node_##NAME                                   \
-    {                                                            \
-        TYPE data;                                               \
-        struct Node_##NAME *next;                                \
-        struct Node_##NAME *prev;                                \
-    } Node_##NAME;                                               \
-                                                                 \
-    typedef struct NAME                                          \
-    {                                                            \
-        Node_##NAME *head;                                       \
-        Node_##NAME *tail;                                       \
-        size_t size;                                             \
-    } NAME;                                                      \
-                                                                 \
-    NAME *create_##NAME(void);                                   \
-                                                                 \
-    void erase_##NAME(NAME *list);                               \
-                                                                 \
-    void delete_##NAME(NAME *list);                              \
-                                                                 \
-    void push_back_##NAME(NAME *list, TYPE value);               \
-                                                                 \
-    void push_front_##NAME(NAME *list, TYPE value);              \
-                                                                 \
-    TYPE pop_back_##NAME(NAME *list);                            \
-                                                                 \
-    TYPE pop_front_##NAME(NAME *list);                           \
-                                                                 \
-    void insert_at_##NAME(NAME *list, size_t index, TYPE value); \
-                                                                 \
-    void delete_at_##NAME(NAME *list, size_t index);             \
-                                                                 \
-    TYPE get_at_##NAME(const NAME *list, size_t index);          \
-                                                                 \
-    int is_equal_##NAME(const NAME *l1, const NAME *l2);         \
-                                                                 \
-    void push_stack_##NAME(NAME *stack, TYPE value);             \
-                                                                 \
-    TYPE pop_stack_##NAME(NAME *stack);                          \
-                                                                 \
-    TYPE peek_stack_##NAME(const NAME *stack);                   \
-                                                                 \
-    void enqueue_##NAME(NAME *queue, TYPE value);                \
-                                                                 \
-    TYPE dequeue_##NAME(NAME *queue);                            \
-                                                                 \
+#define DEFINE_LINKEDLIST(TYPE, NAME)                             \
+    typedef struct Node_##NAME                                    \
+    {                                                             \
+        TYPE data;                                                \
+        struct Node_##NAME *next;                                 \
+        struct Node_##NAME *prev;                                 \
+    } Node_##NAME;                                                \
+                                                                  \
+    typedef struct NAME                                           \
+    {                                                             \
+        Node_##NAME *head;                                        \
+        Node_##NAME *tail;                                        \
+        size_t size;                                              \
+    } NAME;                                                       \
+                                                                  \
+    NAME *create_##NAME(void);                                    \
+                                                                  \
+    void erase_##NAME(NAME *list);                                \
+                                                                  \
+    void delete_##NAME(NAME *list);                               \
+                                                                  \
+    void push_back_##NAME(NAME *list, TYPE *value);               \
+                                                                  \
+    void push_front_##NAME(NAME *list, TYPE *value);              \
+                                                                  \
+    TYPE pop_back_##NAME(NAME *list);                             \
+                                                                  \
+    TYPE pop_front_##NAME(NAME *list);                            \
+                                                                  \
+    void insert_at_##NAME(NAME *list, size_t index, TYPE *value); \
+                                                                  \
+    void delete_at_##NAME(NAME *list, size_t index);              \
+                                                                  \
+    TYPE get_at_##NAME(const NAME *list, size_t index);           \
+                                                                  \
+    int is_equal_##NAME(const NAME *l1, const NAME *l2);          \
+                                                                  \
+    void push_stack_##NAME(NAME *stack, TYPE *value);             \
+                                                                  \
+    TYPE pop_stack_##NAME(NAME *stack);                           \
+                                                                  \
+    TYPE peek_stack_##NAME(const NAME *stack);                    \
+                                                                  \
+    void enqueue_##NAME(NAME *queue, TYPE *value);                \
+                                                                  \
+    TYPE dequeue_##NAME(NAME *queue);                             \
+                                                                  \
     TYPE peek_queue_##NAME(const NAME *queue);
 
 #define IMPLEMENT_LINKEDLIST(TYPE, NAME)                                    \
@@ -102,9 +103,9 @@
         free(list);                                                         \
     }                                                                       \
                                                                             \
-    void push_back_##NAME(NAME *list, TYPE value)                           \
+    void push_back_##NAME(NAME *list, TYPE *value)                          \
     {                                                                       \
-        if (!list)                                                          \
+        if (!list || !value)                                                \
             return;                                                         \
         Node_##NAME *new_node = (Node_##NAME *)malloc(sizeof(Node_##NAME)); \
         if (!new_node)                                                      \
@@ -122,9 +123,9 @@
         list->size++;                                                       \
     }                                                                       \
                                                                             \
-    void push_front_##NAME(NAME *list, TYPE value)                          \
+    void push_front_##NAME(NAME *list, TYPE *value)                         \
     {                                                                       \
-        if (!list)                                                          \
+        if (!list || !value)                                                \
             return;                                                         \
         Node_##NAME *new_node = (Node_##NAME *)malloc(sizeof(Node_##NAME)); \
         if (!new_node)                                                      \
@@ -193,9 +194,9 @@
         return value;                                                       \
     }                                                                       \
                                                                             \
-    void insert_at_##NAME(NAME *list, size_t index, TYPE value)             \
+    void insert_at_##NAME(NAME *list, size_t index, TYPE *value)            \
     {                                                                       \
-        if (!list)                                                          \
+        if (!list || !value)                                                \
             return;                                                         \
         if (index > list->size)                                             \
             return;                                                         \
@@ -313,7 +314,7 @@
         else                                                                \
             return 0;                                                       \
     }                                                                       \
-    void push_stack_##NAME(NAME *stack, TYPE value)                         \
+    void push_stack_##NAME(NAME *stack, TYPE *value)                        \
     {                                                                       \
         push_back_##NAME(stack, value);                                     \
     }                                                                       \
@@ -330,7 +331,7 @@
         return get_at_##NAME(stack, stack->size - 1);                       \
     }                                                                       \
                                                                             \
-    void enqueue_##NAME(NAME *queue, TYPE value)                            \
+    void enqueue_##NAME(NAME *queue, TYPE *value)                           \
     {                                                                       \
         push_back_##NAME(queue, value);                                     \
     }                                                                       \

@@ -39,13 +39,13 @@ StatusCode scan_file(const char *path, list *lst)
         return LIST_NOT_INITIALIZED;
     }
 
-    
-    while(fscanf(file, )){
-
+    Liver *l = (Liver *)malloc(sizeof(Liver));
+    while (fscanf(file, "%u %49s %49s %49s %u %u %u %c %.2f",
+                  l->id, l->surname, l->name, l->patronymic, l->data[0],
+                  l->data[1], l->data[2], l->sex, l->average_income) == 1)
+    {
+        push_back_list(lst, l);
     }
-
-
-    size_t count = 0;
 
     fclose(file);
     return SUCCESS;
@@ -80,4 +80,23 @@ StatusCode write_to_file(const char *path, list *lst)
     fclose(file);
 
     return SUCCESS;
+}
+
+StatusCode Search_By(list *lst, size_t attr)
+{
+    switch (attr)
+    {
+    case 0:
+    {
+        printf("Введите id: ");
+        int tmp = 0;
+        if (scanf("%d", &tmp) != 1)
+            return SCAN_ERROR;
+        Liver liv;
+        for (size_t i = 0; i < lst->size; i++)
+        {
+            liv = get_at_list(lst, i);
+        }
+    }
+    }
 }

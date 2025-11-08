@@ -3,6 +3,7 @@
 
 #include "../include/Liver_List.h"
 #include "../include/StatusCode.h"
+#include "../include/Liver.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -15,5 +16,7 @@ StatusCode valid_path(const char *path);
 StatusCode scan_file(const char *path, list *lst);
 
 StatusCode write_to_file(const char *path, list *lst);
+
+StatusCode Search_By(list *lst, size_t attr);
 
 #endif // UTILS_H

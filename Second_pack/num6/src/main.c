@@ -26,8 +26,6 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    // Print(class);
-
     int option = 0;
     print_options();
     vstatus = ValidOptions(&option);
@@ -66,6 +64,19 @@ int main(int argc, char *argv[])
         else
         {
             printf("Invalid key input.\n");
+        }
+        break;
+    }
+    case 2:
+    {
+        status = Print_Above_Average(&class, argv[2]);
+        if (status != SUCCESS)
+        {
+            status_handle(status);
+        }
+        else
+        {
+            printf("Above-average students written to trace file.\n");
         }
         break;
     }

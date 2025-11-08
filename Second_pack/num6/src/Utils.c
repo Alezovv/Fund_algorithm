@@ -11,6 +11,7 @@ void print_options()
     printf("\nSelect option: \n");
     printf("0 - Search by:\n");
     printf("1 - Sort by:\n");
+    printf("2 - Print students with above-average marks\n");
 }
 
 void print_attribute()

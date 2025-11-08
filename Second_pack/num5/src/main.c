@@ -2,8 +2,6 @@
 
 int main(void)
 {
-    // setlocale(LC_ALL, "");
-
     char input_path[256], output_path[256];
 
     printf("Enter input file path: ");
@@ -47,6 +45,6 @@ int main(void)
     fclose(fin);
     fclose(fout);
 
-    printf("✅ Text formatted and written to: %s\n", output_path);
+    printf("Text formatted and written to: %s\n", output_path);
     return 0;
 }
